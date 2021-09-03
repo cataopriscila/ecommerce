@@ -7,6 +7,7 @@ import OrderDropDown from "./Components/OrderDropDown";
 import SearchBox from "./Components/SearchBox";
 import ToggleStock from "./Components/ToggleStock";
 import FilterCategory from "./Components/FilterCategory";
+import ShowAllButton from "./Components/ShowAllButton";
 
 
 function App () {
@@ -71,16 +72,21 @@ function App () {
         onStock={onStock}
         restoreInitial={restoreInitial}            
         />
+        <SearchBox 
+        onInputChange={onInputChange}
+        />
         <OrderDropDown 
         handleChange={handleChange}
         />
         <FilterCategory
         handleCategory={handleCategory}
         restoreInitial={restoreInitial}
+        />        
+        
+        <ShowAllButton
+        restoreInitial={restoreInitial}
         />
-        <SearchBox 
-        onInputChange={onInputChange}
-        /></div>
+        </div>
         
         <TableContent      
         products={filteredProducts}

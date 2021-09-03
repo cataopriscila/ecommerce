@@ -4,7 +4,7 @@
 
 .OverTable {
   display:flex; 
-  width: 40vw; 
+  width: 50vw; 
   padding-top: 4rem; 
   justify-content: space-around;   
 }

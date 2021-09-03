@@ -2,7 +2,7 @@ import React from "react";
 import { Table } from "semantic-ui-react";
 import TableItems from "./TableItems";
 
-const TableList = ({ products }) => {
+const TableList = ({ products, quantity }) => {
   return (
       <>    
       { products.length?
@@ -16,6 +16,7 @@ const TableList = ({ products }) => {
               category={products[i].category}
               price={products[i].price}
               stock={products[i].stock}
+              quantity={quantity}
             />                   
           
           )
