@@ -8,3 +8,11 @@
   padding-top: 4rem; 
   justify-content: space-around;   
 }
+
+.QuantityColumn {
+  display: inline-block;
+  margin: 1rem;
+  padding: 1rem;
+  background-color: rgb(87, 85, 85);
+  border-radius: 5px;
+}

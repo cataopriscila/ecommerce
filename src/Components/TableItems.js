@@ -1,6 +1,6 @@
 
 import {  useState } from 'react';
-import { Table, Image, Checkbox, Label } from 'semantic-ui-react';
+import { Table, Image, Checkbox, Label, Icon } from 'semantic-ui-react';
 
 const TableItems = ({image, name, category, price, stock}) => { 
   const [quantity, setQuantity ] = useState(0);
@@ -13,6 +13,21 @@ const TableItems = ({image, name, category, price, stock}) => {
        setQuantity(0);
      }
   }
+
+  const addItem = () => {
+    if(quantity >=0 && quantity < stock) {
+      setQuantity(quantity+1);
+    }
+    
+  }
+
+  const removeItem = () => {
+    if(quantity > 0) {
+      setQuantity(quantity-1);
+    }   
+   
+  }
+  
   
  
 
@@ -22,7 +37,7 @@ const TableItems = ({image, name, category, price, stock}) => {
             <Checkbox 
             onChange={handleCheck}            
             onClick={(e)=> {isChecked? setQuantity(1): setQuantity(0)}}
-            disabled={!stock}            
+                       
             label= {!stock?<Label basic color='red' pointing='left'>Out of Stock!</Label>:'' }          
             />
             
@@ -32,7 +47,19 @@ const TableItems = ({image, name, category, price, stock}) => {
           <Table.Cell>{category}</Table.Cell>
           <Table.Cell>${price}</Table.Cell>
           <Table.Cell>{stock}</Table.Cell>
-          <Table.Cell >{quantity}</Table.Cell>  
+          <Table.Cell >
+            <Icon 
+            size="large" 
+            name="caret square up outline"
+            onClick={addItem}
+            />
+              <div className="QuantityColumn">{quantity}</div>
+            <Icon 
+            size="large" 
+            name="caret square down outline"
+            onClick={removeItem}
+            />
+            </Table.Cell>  
         </Table.Row>  
     
   )
