@@ -1,5 +1,5 @@
 .App {
-  margin: 0 15rem;  
+  margin: 0 10rem;  
 }
 
 .OverTable {
@@ -15,4 +15,14 @@
   padding: 1rem;
   background-color: rgb(87, 85, 85);
   border-radius: 5px;
+}
+
+.Checkout {
+  margin: 10rem;
+}
+
+.Footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 3rem;
 }
