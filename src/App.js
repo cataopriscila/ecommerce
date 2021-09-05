@@ -8,9 +8,10 @@ import ToggleStock from "./Components/ToggleStock";
 import FilterCategory from "./Components/FilterCategory";
 import ShowAllButton from "./Components/ShowAllButton";
 import OfficeFooter from "./Components/OfficeFooter";
-import Checkout from "./Components/Checkout";
-import Catalog from "./Components/Catalog";
+import Checkout from "./Containers/Checkout";
+import Cart from "./Components/Cart";
 import ThatsAllFolks from "./Components/ThatsAllFolks";
+import Navbar from "./Containers/Navbar";
 
 
 function App () {
@@ -113,8 +114,9 @@ function App () {
          
           
       return (
-      <div className="App">        
-        <OfficeHeader />
+      <div className="App"> 
+        <Navbar/>       
+        <OfficeHeader/>
         <div className="OverTable">
         <ToggleStock
         onStock={onStock}
@@ -136,7 +138,7 @@ function App () {
         />
         </div>
                 
-        <Catalog     
+        <Cart     
         products={filteredProducts}               
         onSubmit={onSubmit}
         addItem={addItem}
@@ -144,8 +146,7 @@ function App () {
         onCheckboxCheck={onCheckboxCheck}        
         
           />
-        <Checkout products={checkout}/>
-        {/* <ThatsAllFolks/>                 */}
+        <Checkout products={checkout}/>                        
         <OfficeFooter/>
       </div>
     ); 

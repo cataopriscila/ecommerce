@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button, Icon } from 'semantic-ui-react';
-import CheckoutList from './CheckoutList';
+import CheckoutList from '../Components/CheckoutList';
+import ThatsAllFolks from '../Components/ThatsAllFolks';
 
 const Checkout = ({products}) => {
   const [total, setTotal] = useState('');
+ 
 
   useEffect(() => {
     setTotal(products.reduce((acc, item) => acc + item.price, 0))
@@ -37,16 +39,7 @@ const Checkout = ({products}) => {
               <h5>TOTAL: $ {total}</h5>              
             </Table.HeaderCell>
             <Table.HeaderCell colSpan="12">
-              <Button
-                floated="right"
-                icon
-                labelPosition="right"
-                secondary
-                size="large"
-                href="#thatsallfolks"                                
-              >
-                <Icon name="payment" /> Payment options
-              </Button>
+              <ThatsAllFolks/>
             </Table.HeaderCell>
           </Table.Row>
         </Table.Footer>       
