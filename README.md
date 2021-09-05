@@ -22,12 +22,11 @@ Once you're in, you can start shopping at the Shopping Cart. Here you can:
 - Show only items in stock by clicking on the toggle checkbox;
 - Order items by name, category, price or stock;
 - Filter items by category;
-- Show all items by clicking the 'Show All' button;
-- Select quantity by clicking on checkbox (set to 1) or the 'up' and 'down' buttons.
+- Select quantity by clicking on the item checkbox or on the 'up' and 'down' buttons.
+- Reset all by clicking on the 'Reset All' button;
 
-When you're all set, click the 'Go to cart' button and head to Checkout.
-There, you can visualize all selected items with their quantity, prices 
-and total amount payment. Click the 'Payment options' button and that's 
-it! You have brand new office supplies! 
-
+When you're all set, click on the 'Go to checkout' button and head to Checkout.
+There, you can confirm all selected items with their quantities, prices 
+and the total amount payment. Click the 'Payment options' button and that's 
+it! You have brand new office supplies!
 

@@ -8,7 +8,7 @@ const Catalog = ({ products, onSubmit, addItem, removeItem, onCheckboxCheck, tot
   return (
     <>
       <h2>Shop Cart</h2>
-      <Table celled color="grey" key="grey" inverted>
+      <Table id='shoppingcart' celled color="grey" key="grey" inverted>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell></Table.HeaderCell>
@@ -40,7 +40,7 @@ const Catalog = ({ products, onSubmit, addItem, removeItem, onCheckboxCheck, tot
                 onClick={onSubmit}
                 href="#checkout"                
               >
-                <Icon name="cart" /> Go to cart
+                <Icon name="cart" /> Go to checkout
               </Button>
             </Table.HeaderCell>
           </Table.Row>
