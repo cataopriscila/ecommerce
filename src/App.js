@@ -6,10 +6,10 @@ import OrderDropDown from "./Components/OrderDropDown";
 import SearchBox from "./Components/SearchBox";
 import ToggleStock from "./Components/ToggleStock";
 import FilterCategory from "./Components/FilterCategory";
-import ShowAllButton from "./Components/ShowAllButton";
+import ResetAllButton from "./Components/ResetAllButton";
 import OfficeFooter from "./Components/OfficeFooter";
-import Checkout from "./Containers/Checkout";
-import Cart from "./Components/Cart";
+import Checkout from "./Containers/Checkout/Checkout";
+import Cart from "./Components/Cart/Cart";
 import Navbar from "./Containers/Navbar";
 
 
@@ -17,9 +17,8 @@ function App () {
   const [products, setProducts] = useState([]);
   const [initial, setInitial] = useState([]);
   const [checkout, setCheckout] = useState([]);
-  const [inputField, setInputField] = useState("");
-
-  
+  const [inputField, setInputField] = useState(""); 
+  const [isUnchecked, setIsUnchecked] = useState(false);
 
   //Filter products by name in input
   let filteredProducts = products.filter(item => {
@@ -32,12 +31,9 @@ function App () {
   
   //Show only products in stock
   const onStock = (e) => {
-      setProducts(filteredProducts.filter(item => item.stock))       
-    }
-  const isUnchecked = () => {
-    restoreInitial();
-  }
-    
+    setIsUnchecked(!isUnchecked);
+    return isUnchecked? setProducts(initial):setProducts(filteredProducts.filter(item => item.stock))       
+    }    
 
   //Filter products by category
   const handleCategory = (e, {value}) => {               
@@ -93,8 +89,9 @@ function App () {
       } 
       return item;
     }))    
-  }   
-  
+  }
+
+  //Set products to checkout
   const onSubmit = () => {
    setCheckout(filteredProducts.filter( item => item.quantity));    
   }
@@ -105,43 +102,38 @@ function App () {
         )
         .then((response) => response.json()
         .then((data) => {
-          const productFeatureAdded = data.data.products.map((item, i) => {
+          const allProducts = data.data.products.map((item, i) => {
             return Object.assign({}, item, {quantity: 0, ischecked: true})
            }) 
-            setProducts(productFeatureAdded.sort((a, b) => a.id - b.id));
-            setInitial(productFeatureAdded);                      
-            console.log(productFeatureAdded);
+            setProducts(allProducts.sort((a, b) => a.id - b.id));
+            setInitial(allProducts);           
           })
-        );
-    
-  }, []);        
+        );    
+  }, []);  
          
-          
       return (
       <div className="App"> 
         <Navbar/>       
         <OfficeHeader/>
         <div className="OverTable">
-        <ToggleStock
-        onStock={onStock}
-        isUnchecked={isUnchecked}            
-        />
-        <SearchBox 
-        onInputChange={onInputChange}
-        />
-        <OrderDropDown 
-        handleChange={handleChange}
-        />
-        <FilterCategory
-        handleCategory={handleCategory}
-        restoreInitial={restoreInitial}
-        />        
-        
-        <ShowAllButton
-        restoreInitial={restoreInitial}
-        />
-        </div>
-                
+          <ToggleStock
+          onStock={onStock}
+          isUnchecked={isUnchecked}            
+          />
+          <SearchBox 
+          onInputChange={onInputChange}
+          />
+          <OrderDropDown 
+          handleChange={handleChange}
+          />
+          <FilterCategory
+          handleCategory={handleCategory}
+          restoreInitial={restoreInitial}
+          />        
+          <ResetAllButton
+          restoreInitial={restoreInitial}
+          />
+        </div>                
         <Cart     
         products={filteredProducts}               
         onSubmit={onSubmit}

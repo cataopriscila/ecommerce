@@ -25,7 +25,9 @@ Once you're in, you can start shopping at the Shopping Cart. Here you can:
 - Show all items by clicking the 'Show All' button;
 - Select quantity by clicking on checkbox (set to 1) or the 'up' and 'down' buttons.
 
-When you're all set, click the 'Go to cart' button and head to Checkout. There, you can
-visualize all selected items with their quantity, prices and total amount payment. Click
-the 'Payment options' button and that's it! You have brand new office supplies! 
+When you're all set, click the 'Go to cart' button and head to Checkout.
+There, you can visualize all selected items with their quantity, prices 
+and total amount payment. Click the 'Payment options' button and that's 
+it! You have brand new office supplies! 
+
 

@@ -1,11 +1,8 @@
 import React from "react";
 import { Table } from "semantic-ui-react";
-import TableItems from "./TableItems";
+import CartItems from "./CartItems";  
 
-  
-
-const TableList = ({ products, addItem, removeItem, onCheckboxCheck, total }) => {  
-  
+const CartList = ({ products, addItem, removeItem, onCheckboxCheck, total }) => {    
   return (
       <>        
            { products.length?
@@ -14,7 +11,7 @@ const TableList = ({ products, addItem, removeItem, onCheckboxCheck, total }) =>
         .map((list, i) => {          
           
           return (            
-              <TableItems
+              <CartItems
               key={i}
               listID={i}
               image={products[i].image}
@@ -43,4 +40,4 @@ const TableList = ({ products, addItem, removeItem, onCheckboxCheck, total }) =>
   )
 };
 
-export default TableList;
+export default CartList;

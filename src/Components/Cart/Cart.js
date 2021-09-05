@@ -1,10 +1,9 @@
 
 import React from "react";
 import { Table, Icon, Button } from "semantic-ui-react";
-import TableList from "./TableList";
+import CartList from "./CartList";
 
-const Catalog = ({ products, onSubmit, addItem, removeItem, onCheckboxCheck, total}) => {
-  
+const Catalog = ({ products, onSubmit, addItem, removeItem, onCheckboxCheck, total}) => {  
   
   return (
     <>
@@ -20,17 +19,15 @@ const Catalog = ({ products, onSubmit, addItem, removeItem, onCheckboxCheck, tot
             <Table.HeaderCell>Stock</Table.HeaderCell>
             <Table.HeaderCell>Quantity</Table.HeaderCell>
           </Table.Row>
-        </Table.Header>
-        
+        </Table.Header>        
         <Table.Body>
-          <TableList          
+          <CartList          
           products={products}          
           addItem={addItem}
           removeItem={removeItem}
           onCheckboxCheck={onCheckboxCheck}          
           total={total} />
         </Table.Body>
-
         <Table.Footer fullWidth>
           <Table.Row>
             <Table.HeaderCell colSpan="12">

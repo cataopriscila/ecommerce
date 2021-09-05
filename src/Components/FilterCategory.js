@@ -5,8 +5,7 @@ const FilterCategory = ({ handleCategory, restoreInitial }) =>{
 
   const options = [    
     { key: 'paper',  text: 'Paper', value: 'paper' },
-    { key: 'tools',  text: 'Tools', value: 'tools' },
-    
+    { key: 'tools',  text: 'Tools', value: 'tools' },    
   ] 
  
   return (

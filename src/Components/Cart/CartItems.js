@@ -1,6 +1,6 @@
 import { Table, Image, Checkbox, Label, Icon } from "semantic-ui-react";
 
-const TableItems = ({
+const CartItems = ({
   image,
   name,
   category,
@@ -60,4 +60,4 @@ const TableItems = ({
   );
 };
 
-export default TableItems;
+export default CartItems;
