@@ -20,7 +20,7 @@ function ThatsAllFolks() {
                 Payment options
                 </Button>}
     >
-      <Modal.Header>Thanks for the oportunity!</Modal.Header>
+      <Modal.Header>That's all folks!!!</Modal.Header>
       <Modal.Content image>      
         <Image size='large' src='https://gifimage.net/wp-content/uploads/2018/06/thats-all-folks-bugs-bunny-gif-6.gif/' wrapped />
         <Modal.Description>

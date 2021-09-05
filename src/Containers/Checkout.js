@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Button, Icon } from 'semantic-ui-react';
+import { Table  } from 'semantic-ui-react';
 import CheckoutList from '../Components/CheckoutList';
 import ThatsAllFolks from '../Components/ThatsAllFolks';
 
@@ -8,7 +8,7 @@ const Checkout = ({products}) => {
  
 
   useEffect(() => {
-    setTotal(products.reduce((acc, item) => acc + item.price, 0))
+    setTotal(products.reduce((acc, item) => acc + (item.price * item.quantity), 0))
   }, [products]);
  
     
@@ -16,7 +16,7 @@ const Checkout = ({products}) => {
     return (  
 <>
 <h2>Checkout</h2>
-  <Table size='medium'
+  <Table size='small'
    className='Checkout'
    id='checkout'
    >
@@ -35,8 +35,8 @@ const Checkout = ({products}) => {
     </Table.Body> 
         <Table.Footer fullWidth>
           <Table.Row>
-            <Table.HeaderCell  colSpan="12">
-              <h5>TOTAL: $ {total}</h5>              
+            <Table.HeaderCell>
+              <h5>TOTAL: $ {Number(total).toFixed(2)}</h5>              
             </Table.HeaderCell>
             <Table.HeaderCell colSpan="12">
               <ThatsAllFolks/>

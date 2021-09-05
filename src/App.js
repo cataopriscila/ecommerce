@@ -10,7 +10,6 @@ import ShowAllButton from "./Components/ShowAllButton";
 import OfficeFooter from "./Components/OfficeFooter";
 import Checkout from "./Containers/Checkout";
 import Cart from "./Components/Cart";
-import ThatsAllFolks from "./Components/ThatsAllFolks";
 import Navbar from "./Containers/Navbar";
 
 
@@ -18,7 +17,8 @@ function App () {
   const [products, setProducts] = useState([]);
   const [initial, setInitial] = useState([]);
   const [checkout, setCheckout] = useState([]);
-  const [inputField, setInputField] = useState("");  
+  const [inputField, setInputField] = useState("");
+
   
 
   //Filter products by name in input
@@ -34,6 +34,10 @@ function App () {
   const onStock = (e) => {
       setProducts(filteredProducts.filter(item => item.stock))       
     }
+  const isUnchecked = () => {
+    restoreInitial();
+  }
+    
 
   //Filter products by category
   const handleCategory = (e, {value}) => {               
@@ -79,10 +83,10 @@ function App () {
   // Set quantity with checkbox
   const onCheckboxCheck = (e) => { 
     setProducts(filteredProducts.map( (item, i) => {       
-       console.log(item.ischecked)       
+             
       if(i == e.target.id) {        
         if(item.ischecked) {
-          return Object.assign({}, item, {quantity: 1, ischecked: false});
+          return Object.assign({}, item, {quantity:1, ischecked: false});
         } else {
           return Object.assign({}, item, {quantity: 0, ischecked: true});
         }
@@ -120,7 +124,7 @@ function App () {
         <div className="OverTable">
         <ToggleStock
         onStock={onStock}
-        restoreInitial={restoreInitial}            
+        isUnchecked={isUnchecked}            
         />
         <SearchBox 
         onInputChange={onInputChange}
@@ -143,9 +147,8 @@ function App () {
         onSubmit={onSubmit}
         addItem={addItem}
         removeItem={removeItem}        
-        onCheckboxCheck={onCheckboxCheck}        
-        
-          />
+        onCheckboxCheck={onCheckboxCheck}       
+        />
         <Checkout products={checkout}/>                        
         <OfficeFooter/>
       </div>
