@@ -63,7 +63,7 @@ function App() {
     setProducts(
       filteredProducts.map((item, i) => {
         if (
-          i == e.target.id &&
+          i === Number(e.target.id) &&
           item.quantity >= 0 &&
           item.quantity < item.stock
         ) {
@@ -77,7 +77,7 @@ function App() {
   const removeItem = (e) => {
     setProducts(
       filteredProducts.map((item, i) => {
-        if (i == e.target.id && item.quantity > 0) {
+        if (i === Number(e.target.id) && item.quantity > 0) {
           return Object.assign({}, item, { quantity: item.quantity - 1 });
         }
         return item;
@@ -89,7 +89,7 @@ function App() {
   const onCheckboxCheck = (e) => {
     setProducts(
       filteredProducts.map((item, i) => {
-        if (i == e.target.id) {
+        if (i === Number(e.target.id) ) {
           if (item.ischecked) {
             return Object.assign({}, item, { quantity: 1, ischecked: false });
           } else {
@@ -111,14 +111,17 @@ function App() {
       "https://us-central1-fir-projects-3ee1f.cloudfunctions.net/demopayload"
     ).then((response) =>
       response.json().then((data) => {
+        console.log(data.data.products)
         const allProducts = data.data.products.map((item, i) => {
           return Object.assign({}, item, { quantity: 0, ischecked: true });
         });
+        console.log(allProducts)
         setProducts(allProducts.sort((a, b) => a.id - b.id));
         setInitial(allProducts);
       })
     );
   }, []);
+  
 
   return (
     <div className="App">
