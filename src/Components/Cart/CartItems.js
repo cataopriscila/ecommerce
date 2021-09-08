@@ -10,9 +10,8 @@ const CartItems = ({
   listID,
   onCheckboxCheck,
   addItem,
-  removeItem,
-  total
-}) => {
+  removeItem
+}) => { 
   
 
   return (
@@ -35,7 +34,7 @@ const CartItems = ({
         </Table.Cell>
         <Table.Cell>
           <Image centered rounded size="tiny" src={image} />
-        </Table.Cell>
+        </Table.Cell>        
         <Table.Cell>{name}</Table.Cell>
         <Table.Cell>{category}</Table.Cell>
         <Table.Cell>${price}</Table.Cell>
