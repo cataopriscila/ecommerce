@@ -8,7 +8,7 @@ const CartList = ({ products, addItem, removeItem, onCheckboxCheck, total }) => 
            { products.length?
         ( 
           products        
-        .map((list, i) => {          
+        .map((item , i) => {          
           
           return (            
               <CartItems
@@ -33,8 +33,7 @@ const CartList = ({ products, addItem, removeItem, onCheckboxCheck, total }) => 
             <h3>Product not found!</h3>
           </Table.Cell>        
         </Table.Row>)
-      } 
-      
+      }      
                  
     </>
   )

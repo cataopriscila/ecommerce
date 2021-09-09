@@ -108,6 +108,7 @@ function App() {
     setCheckout(filteredProducts.filter((item) => item.quantity));
   };
 
+  //Get products data from given resource
   useEffect(() => {
     fetch(
       "https://us-central1-fir-projects-3ee1f.cloudfunctions.net/demopayload"
@@ -121,7 +122,7 @@ function App() {
         setProducts(allProducts.sort((a, b) => a.id - b.id));
         setInitial(allProducts);
       })
-    );
+    ).catch(err => console.log(err, "Page not found"));
   }, []);
   
 
