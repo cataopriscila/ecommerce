@@ -59,9 +59,8 @@ function App() {
   };
 
   //Set and store product quantities
-  
-  const addItem = (e) => {     
-     
+
+  const addItem = (e) => {
     setProducts(
       filteredProducts.map((item, i) => {
         if (
@@ -91,7 +90,7 @@ function App() {
   const onCheckboxCheck = (e) => {
     setProducts(
       filteredProducts.map((item, i) => {
-        if (i === parseInt(e.target.id) ) {
+        if (i === parseInt(e.target.id)) {
           if (item.ischecked) {
             return Object.assign({}, item, { quantity: 1, ischecked: false });
           } else {
@@ -112,19 +111,19 @@ function App() {
   useEffect(() => {
     fetch(
       "https://us-central1-fir-projects-3ee1f.cloudfunctions.net/demopayload"
-    ).then((response) =>
-      response.json().then((data) => {
-        
-        const allProducts = data.data.products.map((item, i) => {
-          return Object.assign({}, item, { quantity: 0, ischecked: true });
-        });
-        
-        setProducts(allProducts.sort((a, b) => a.id - b.id));
-        setInitial(allProducts);
-      })
-    ).catch(err => console.log(err, "Page not found"));
+    )
+      .then((response) =>
+        response.json().then((data) => {
+          const allProducts = data.data.products.map((item, i) => {
+            return Object.assign({}, item, { quantity: 0, ischecked: true });
+          });
+
+          setProducts(allProducts.sort((a, b) => a.id - b.id));
+          setInitial(allProducts);
+        })
+      )
+      .catch((err) => console.log(err, "Page not found"));
   }, []);
-  
 
   return (
     <div className="App">

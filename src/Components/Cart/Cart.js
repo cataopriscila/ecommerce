@@ -1,14 +1,19 @@
-
 import React from "react";
 import { Table, Icon, Button } from "semantic-ui-react";
 import CartList from "./CartList";
 
-const Catalog = ({ products, onSubmit, addItem, removeItem, onCheckboxCheck, total}) => {  
-  
+const Catalog = ({
+  products,
+  onSubmit,
+  addItem,
+  removeItem,
+  onCheckboxCheck,
+  total,
+}) => {
   return (
     <>
       <h2>Shop Cart</h2>
-      <Table id='shoppingcart' celled color="grey" key="grey" inverted>
+      <Table id="shoppingcart" celled color="grey" key="grey" inverted>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell></Table.HeaderCell>
@@ -19,14 +24,15 @@ const Catalog = ({ products, onSubmit, addItem, removeItem, onCheckboxCheck, tot
             <Table.HeaderCell>Stock</Table.HeaderCell>
             <Table.HeaderCell>Quantity</Table.HeaderCell>
           </Table.Row>
-        </Table.Header>        
+        </Table.Header>
         <Table.Body>
-          <CartList          
-          products={products}          
-          addItem={addItem}
-          removeItem={removeItem}
-          onCheckboxCheck={onCheckboxCheck}          
-          total={total} />
+          <CartList
+            products={products}
+            addItem={addItem}
+            removeItem={removeItem}
+            onCheckboxCheck={onCheckboxCheck}
+            total={total}
+          />
         </Table.Body>
         <Table.Footer fullWidth>
           <Table.Row>
@@ -38,13 +44,13 @@ const Catalog = ({ products, onSubmit, addItem, removeItem, onCheckboxCheck, tot
                 secondary
                 size="large"
                 onClick={onSubmit}
-                href="#checkout"                
+                href="#checkout"
               >
                 <Icon name="cart" /> Go to checkout
               </Button>
             </Table.HeaderCell>
           </Table.Row>
-        </Table.Footer>               
+        </Table.Footer>
       </Table>
     </>
   );
