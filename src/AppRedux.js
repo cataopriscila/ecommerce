@@ -1,13 +1,19 @@
 import "./App.css";
-import { requestProducts, setInputField } from "./Actions";
-import { connect } from 'react-redux';
+import {
+  requestProducts,
+  setInputField,
+  filterProductsByCategory,
+  setAllProducts,
+  setProductsByOrder,
+} from "./Actions";
+import { connect } from "react-redux";
 import "semantic-ui-css/semantic.min.css";
 import OfficeHeader from "./Components/OfficeHeader";
 import { useEffect, useState } from "react";
 import OrderDropDown from "./Components/OrderDropDown";
 import SearchBox from "./Components/SearchBox";
 import ToggleStock from "./Components/ToggleStock";
-import FilterCategory from "./Components/FilterCategory";
+import CategoryDropdown from "./Components/CategoryDropdown";
 import ResetAllButton from "./Components/ResetAllButton";
 import OfficeFooter from "./Components/OfficeFooter";
 import Checkout from "./Containers/Checkout/Checkout";
@@ -15,42 +21,47 @@ import Cart from "./Components/Cart/Cart";
 import Navbar from "./Containers/Navbar";
 
 const mapStateToProps = (state) => {
-  return ({
+  return {
     inputField: state.searchProductsByName.inputField,
     products: state.getProducts.products,
+    allProducts: state.getProducts.products,
     isPending: state.getProducts.isPending,
     error: state.getProducts.error,
+    category: state.getProductsByCategory.category,
+    field: state.getOrderedProducts.field,
+  };
+};
 
-  })
-}
+const selectProductsByName = (state, input) =>
+  state.filter((item) => item.name.toLowerCase().includes(input.toLowerCase()));
 
 const mapDispatchToProps = (dispatch) => {
-  return ({
+  return {
     onInputChange: (event) => dispatch(setInputField(event.target.value)),
-    onRequestProducts: () => dispatch(requestProducts())
-  })
-  
-}
+    onRequestProducts: () => dispatch(requestProducts()),
+    handleCategory: (e, { value }) => dispatch(filterProductsByCategory(value)),
+    restoreProducts: () => dispatch(setAllProducts()),
+    handleOrder: (e, { value }) => dispatch(setProductsByOrder(value)),
+  };
+};
 
 function App(props) {
+  const {
+    onRequestProducts,
+    onInputChange,
+    products,
+    inputField,
+    handleCategory,
+    restoreProducts,
+    handleOrder,
+  } = props;
 
-  const { onRequestProducts, onInputChange, products } = props;
-
-  // const [products, setProducts] = useState([]);
-  // const [initial, setInitial] = useState([]);
   const [checkout, setCheckout] = useState([]);
-  // const [inputField, setInputField] = useState("");
   // const [isUnchecked, setIsUnchecked] = useState(false);
 
   //Filter products by name in input
-  let filteredProducts = products.filter((item) => {
-    return item.name.toLowerCase().includes(props.inputField.toLowerCase());
-  });
+  let productsByName = selectProductsByName(products, inputField);
 
-  // const onInputChange = (e) => {
-  //   setInputField(e.target.value);
-  // };
-  
   //Show only products in stock
 
   // const onStock = (e) => {
@@ -58,12 +69,6 @@ function App(props) {
   //   return isUnchecked
   //     ? setProducts(initial)
   //     : setProducts(filteredProducts.filter((item) => item.stock));
-  // };
-
-  //Filter products by category
-
-  // const handleCategory = (e, { value }) => {
-  //   setProducts(filteredProducts.filter((item) => item.category === value));
   // };
 
   //Order products by name, category, price or stock
@@ -78,16 +83,9 @@ function App(props) {
   //   );
   // };
 
-  //Show all products
-
-  // const restoreInitial = () => {
-  //   setInputField("");
-  //   setProducts(initial);
-  // };
-
   //Set and store product quantities
-  
-  // const addItem = (e) => {      
+
+  // const addItem = (e) => {
   //   setProducts(
   //     filteredProducts.map((item, i) => {
   //       if (
@@ -130,31 +128,15 @@ function App(props) {
   //   );
   // };
 
-  //Set products to checkout
+  // Set products to checkout
   const onSubmit = () => {
-    setCheckout(filteredProducts.filter((item) => item.quantity));
+    setCheckout(productsByName.filter((item) => item.quantity));
   };
 
-  
   //Get products data from given resource
   useEffect(() => {
-
     onRequestProducts();
-    // fetch(
-    //   "https://us-central1-fir-projects-3ee1f.cloudfunctions.net/demopayload"
-    // ).then((response) =>
-    //   response.json().then((data) => {
-        
-    //     const allProducts = data.data.products.map((item, i) => {
-    //       return Object.assign({}, item, { quantity: 0, ischecked: true });
-    //     });
-        
-    //     setProducts(allProducts.sort((a, b) => a.id - b.id));
-    //     setInitial(allProducts);
-    //   })
-    // ).catch(err => console.log(err, "Page not found"));
   }, [onRequestProducts]);
-  
 
   return (
     <div className="App">
@@ -163,22 +145,18 @@ function App(props) {
       <div className="OverTable">
         <ToggleStock
         //  onStock={onStock}
-          // isUnchecked={isUnchecked}
-           />
-        <SearchBox onInputChange={onInputChange} />
-        <OrderDropDown
-        //  handleChange={handleChange} 
+        // isUnchecked={isUnchecked}
         />
-        <FilterCategory
-          // handleCategory={handleCategory}
-          // restoreInitial={restoreInitial}
+        <SearchBox onInputChange={onInputChange} inputField={inputField} />
+        <OrderDropDown handleOrder={handleOrder} />
+        <CategoryDropdown
+          handleCategory={handleCategory}
+          restoreProducts={restoreProducts}
         />
-        <ResetAllButton 
-        // restoreInitial={restoreInitial}
-         />
+        <ResetAllButton restoreProducts={restoreProducts} />
       </div>
       <Cart
-        products={filteredProducts}
+        products={productsByName}
         onSubmit={onSubmit}
         // addItem={addItem}
         // removeItem={removeItem}

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import OrderDropDown from "./Components/OrderDropDown";
 import SearchBox from "./Components/SearchBox";
 import ToggleStock from "./Components/ToggleStock";
-import FilterCategory from "./Components/FilterCategory";
+import CategoryDropdown from "./Components/CategoryDropdown";
 import ResetAllButton from "./Components/ResetAllButton";
 import OfficeFooter from "./Components/OfficeFooter";
 import Checkout from "./Containers/Checkout/Checkout";
@@ -133,7 +133,7 @@ function App() {
         <ToggleStock onStock={onStock} isUnchecked={isUnchecked} />
         <SearchBox onInputChange={onInputChange} />
         <OrderDropDown handleChange={handleChange} />
-        <FilterCategory
+        <CategoryDropdown
           handleCategory={handleCategory}
           restoreInitial={restoreInitial}
         />

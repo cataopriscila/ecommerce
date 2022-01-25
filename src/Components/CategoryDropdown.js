@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Dropdown } from "semantic-ui-react";
 
-const FilterCategory = ({ handleCategory, restoreInitial }) => {
+const CategoryDropdown = ({ handleCategory, restoreProducts }) => {
   const options = [
     { key: "paper", text: "Paper", value: "paper" },
     { key: "tools", text: "Tools", value: "tools" },
@@ -15,11 +15,11 @@ const FilterCategory = ({ handleCategory, restoreInitial }) => {
         floating
         options={options}
         onChange={handleCategory}
-        onClick={restoreInitial}
+        onClick={restoreProducts}
         trigger={<></>}
       />
     </Button.Group>
   );
 };
 
-export default FilterCategory;
+export default CategoryDropdown;

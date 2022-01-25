@@ -1,24 +1,37 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-import { createLogger } from 'redux-logger';
-import  thunkMiddleware from 'redux-thunk';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import 'semantic-ui-css/semantic.min.css';
-import { searchProductsByName, getProducts } from './Reducers';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware, combineReducers } from "redux";
+import { createLogger } from "redux-logger";
+import thunkMiddleware from "redux-thunk";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import "semantic-ui-css/semantic.min.css";
+import {
+  searchProductsByName,
+  getProducts,
+  getProductsByCategory,
+  getOrderedProducts,
+} from "./Reducers";
 
 const logger = createLogger();
-const rootReducer = combineReducers({searchProductsByName, getProducts})
-const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger));
+const rootReducer = combineReducers({
+  getProducts,
+  searchProductsByName,
+  getProductsByCategory,
+  getOrderedProducts,
+});
+const store = createStore(
+  rootReducer,
+  applyMiddleware(thunkMiddleware, logger)
+);
 
 ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

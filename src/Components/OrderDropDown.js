@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Dropdown } from "semantic-ui-react";
 
-const OrderDropdown = ({ handleChange }) => {
+const OrderDropdown = ({ handleOrder}) => {
   const options = [
     { key: "name", text: "Name", value: "name" },
     { key: "category", text: "Category", value: "category" },
@@ -16,7 +16,7 @@ const OrderDropdown = ({ handleChange }) => {
         className="button icon"
         floating
         options={options}
-        onChange={handleChange}
+        onChange={handleOrder}
         trigger={<></>}
       />
     </Button.Group>
